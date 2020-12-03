@@ -24,13 +24,24 @@
    foaf:date "2020-12-03"^^xsd:date; 
    foaf:img <https://drojas-files.s3-sa-east-1.amazonaws.com/web_datos/perfil.jpg> ;
    foaf:homepage <https://www.linkedin.com/in/davidrojasg/> ;
-   foaf:knows <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>, <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>, <http://users.dcc.uchile.cl/~dhernand/foaf.ttl#dh>, <https://raw.githubusercontent.com/DaniferMoreno/Lab-9/main/foaf.ttl#dmc>, <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>;
-   social:hasEnemy <http://users.dcc.uchile.cl/~ahogan/abot.ttl#ab>, <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>;
-   foaf:interest wd:Q54837, wd:Q573743, wd:Q579209, wd:Q15228, wd:Q244030, wd:Q11016, wd:Q2927074, wd:Q27887873, wd:Q7889;
-   social:hasSpiritAnimal wd:Q2274076;
-
-   foaf:workplaceHomepage <https://ligup.cl/>
+   foaf:knows  <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>, 
+               <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>, 
+               <http://users.dcc.uchile.cl/~dhernand/foaf.ttl#dh>, 
+               <https://raw.githubusercontent.com/DaniferMoreno/Lab-9/main/foaf.ttl#dmc>, 
+               <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah> ;
+   social:hasEnemy   <http://users.dcc.uchile.cl/~ahogan/abot.ttl#ab>, 
+                     <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh> ;
+   foaf:interest  wd:Q54837, 
+                  wd:Q573743, 
+                  wd:Q579209, 
+                  wd:Q15228, 
+                  wd:Q244030, 
+                  wd:Q11016, 
+                  wd:Q2927074, 
+                  wd:Q27887873, 
+                  wd:Q7889 ;
+   social:hasSpiritAnimal wd:Q2274076 ;
+   foaf:workplaceHomepage <https://ligup.cl/> ;
    foaf:nick "drojas" ;
-
    foaf:myersBriggs "INTP" .
 
