@@ -1,0 +1,32 @@
+@base <http://users.dcc.uchile.cl/~ahogan/foaf.ttl> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix wd: <http://www.wikidata.org/entity/>.
+
+
+<> a foaf:Document ;
+   dc:date "2020-12-03"^^xsd:date ;
+   dc:title "David's FOAF Profile"@en ;
+   foaf:primaryTopic <#dr> ;
+   dc:creator <#dr> .
+
+<#ah> a foaf:Person ;
+   rdfs:label "David Rojas" ;
+   rdfs:comment "Profesor Asistente del DCC"@es ;
+   foaf:name "David Rojas" ;
+   foaf:givenName "David" ;
+   foaf:familyName "Rojas" ;
+   foaf:date "2020-12-03"^^xsd:date; 
+   foaf:img <https://drojas-files.s3-sa-east-1.amazonaws.com/web_datos/perfil.jpg> ;
+   foaf:homepage <https://www.linkedin.com/in/davidrojasg/> ;
+   foaf:knows <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>#me> ;
+
+   social:hasEnemy <http://users.dcc.uchile.cl/~ahogan/abot.ttl#ab> ;
+   foaf:interest wd:Q7889, wd:Q244030, wd:Q11016, wd:Q15228, wd:Q2927074, wd:Q27887873;
+   foaf:myersBriggs "INTP" .
+
