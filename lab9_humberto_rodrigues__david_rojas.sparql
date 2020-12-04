@@ -1,0 +1,26 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX appearances: <http://rdf.muninn-project.org/ontologies/appearances>
+
+# Q2a
+SELECT (count(*) as ?triples) WHERE { 
+    GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?s ?p ?o }
+}
+
+SELECT (count(*) as ?triples) WHERE { 
+    ?s ?p ?o
+}
+
+# Q2b
+SELECT (count(*) as ?triples) WHERE { 
+    GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?s ?p ?o }
+}
+
+SELECT (count(*) as ?triples) WHERE { 
+    ?s ?p ?o
+}

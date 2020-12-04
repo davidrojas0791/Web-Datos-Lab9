@@ -7,7 +7,7 @@
 @prefix social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
-@prefix appearances: <http://rdf.muninn-project.org/ontologies/appearances#hasGender> .
+@prefix appearances: <http://rdf.muninn-project.org/ontologies/appearances> .
 
 
 <> a foaf:Document ;
@@ -18,11 +18,10 @@
 
 <#dr> a foaf:Person ;
    rdfs:label "David Rojas" ;
-   rdfs:comment "Profesor Asistente del DCC"@es ;
    foaf:name "David Rojas" ;
    foaf:givenName "David" ;
    foaf:familyName "Rojas" ;
-   foaf:date "2020-12-03"^^xsd:date; 
+   foaf:age 29; 
    foaf:img <https://drojas-files.s3-sa-east-1.amazonaws.com/web_datos/perfil.jpg> ;
    foaf:homepage <https://www.linkedin.com/in/davidrojasg/> ;
    foaf:knows  <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>, 
