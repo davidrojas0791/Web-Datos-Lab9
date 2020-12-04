@@ -16,7 +16,7 @@
    foaf:primaryTopic <#dr> ;
    dc:creator <#dr> .
 
-<#ah> a foaf:Person ;
+<#dr> a foaf:Person ;
    rdfs:label "David Rojas" ;
    rdfs:comment "Profesor Asistente del DCC"@es ;
    foaf:name "David Rojas" ;
