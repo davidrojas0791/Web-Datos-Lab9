@@ -4,9 +4,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix wd: <http://www.wikidata.org/entity/>.
+@prefix social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix appearances: <http://rdf.muninn-project.org/ontologies/appearances#hasGender> .
 
 
 <> a foaf:Document ;
@@ -43,5 +44,7 @@
    social:hasSpiritAnimal wd:Q2274076 ;
    foaf:workplaceHomepage <https://ligup.cl/> ;
    foaf:nick "drojas" ;
-   foaf:myersBriggs "INTP" .
+   appearances:Gender wd:Q6581097 ;
+   appearances:hasHeightMeasurementMeters "1.77"^^xsd:decimal ;
+   foaf:myersBriggs "ISTP" .
 
