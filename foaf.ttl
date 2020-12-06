@@ -34,7 +34,7 @@
                
                
                <http://anakena.dcc.uchile.cl/~jasalas/web/foaf.ttl#me>  ,
-               <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>      ;
+               <http://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>      ;
    
    social:hasEnemy   <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>, 
                      <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh> ;
