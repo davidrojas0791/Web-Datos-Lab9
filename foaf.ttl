@@ -28,13 +28,12 @@
    foaf:knows  <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>       , 
                <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>         ,
                <http://users.dcc.uchile.cl/~dhernand/foaf.ttl#dh>       , 
+               <http://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>       ,
                
                <http://anakena.dcc.uchile.cl/~jogarrid/web/foaf.ttl#yo> , 
                <http://anakena.dcc.uchile.cl/~ekauffma/foaf.ttl#eli>    ,
                
-               
-               <http://anakena.dcc.uchile.cl/~jasalas/web/foaf.ttl#me>  ,
-               <http://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>      ;
+               <http://anakena.dcc.uchile.cl/~jasalas/web/foaf.ttl#me>  ;
    
    social:hasEnemy   <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>, 
                      <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh> ;
