@@ -24,9 +24,10 @@
    foaf:age 29; 
    foaf:img    <https://drojas-files.s3-sa-east-1.amazonaws.com/web_datos/perfil.jpg> ;
    foaf:homepage  <https://www.linkedin.com/in/davidrojasg/> ;
-   foaf:knows  <http://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>, 
-               <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>, 
-               <http://users.dcc.uchile.cl/~dhernand/foaf.ttl#dh> ; 
+   foaf:knows  <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh>, 
+               <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>,
+ 
+               <https://users.dcc.uchile.cl/~clparede/foaf.ttl#cp>;
    social:hasEnemy   <http://users.dcc.uchile.cl/~ahogan/foaf.ttl#ah>, 
                      <http://users.dcc.uchile.cl/~bhurtado/foaf.ttl#bh> ;
    foaf:interest  wd:Q54837, 
@@ -44,3 +45,4 @@
    appearances:Gender wd:Q6581097 ;
    appearances:hasHeightMeasurementMeters "1.77"^^xsd:decimal ;
    foaf:myersBriggs "ISTP" .
+
