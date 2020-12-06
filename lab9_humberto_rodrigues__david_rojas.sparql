@@ -5,57 +5,124 @@ PREFIX dc: <http://purl.org/dc/terms/>
 PREFIX social: <http://users.dcc.uchile.cl/~ahogan/social.ttl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX appearances: <http://rdf.muninn-project.org/ontologies/appearances>
 
 # Q2a
-LOAD <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl#dr> .
+LOAD <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl>
 
 
 # Q2b
 SELECT (count(*) as ?triples) WHERE { 
-    GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?s ?p ?o }
+    ?s ?p ?o
 }
 
 # Q2c
-construct{ 
-    ?me social:unlikelyFriendOf ?newFriends 
-} 
-where {
-    GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { 
+insert {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?me social:unlikelyFriendOf ?unlikelyFriend . }
+} where {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
         ?me a foaf:Person .
-        ?me social:hasEnemy ?enemies .
-        ?enemies foaf:knows ?newFriends .
-    } 
+        ?me social:hasEnemy ?enemies.
+        graph ?g { ?enemies foaf:knows ?unlikelyFriend .}
+    }
 }
 
-insert data {
+# Q2d
+delete {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?me social:unlikelyFriendOf ?unlikelyFriend . }
+} where {
     graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
-        select ?me social:unlikelyFriendOf ?newFriends
-        where {
-            GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { 
-                ?me a foaf:Person .
-                ?me social:hasEnemy ?enemies .
-                ?enemies foaf:knows ?newFriends .
-            } 
+        ?me a foaf:Person .
+        ?me social:unlikelyFriendOf ?unlikelyFriend .
+    }
+}
+
+# Q2e 
+insert {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?interests ?p ?o }
+} where {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
+        ?me a foaf:Person .
+        ?me foaf:interest ?interests.
+        graph ?g { 
+            ?interests ?p ?o .
+            ?interests wdt:P31 ?type .
+            filter(?type = wd:Q11424)
         }
     }
 }
 
-INSERT { 
-    GRAPH <urn:sparql:tests:insert:informative2> { ?me social:unlikelyFriendOf ?newFriends } 
-} where {
-    GRAPH <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { 
+# Q2f
+select ?peopleName ?moviesTheyLikedName
+where {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
         ?me a foaf:Person .
-        ?me social:hasEnemy ?enemies .
-        ?enemies foaf:knows ?newFriends .
-    } 
+        ?me foaf:knows* ?people .
+        ?people rdfs:label ?peopleName .
+        ?people foaf:interest ?moviesTheyLiked .
+        graph ?g { 
+            ?moviesTheyLiked wdt:P31 ?theirType .
+            ?moviesTheyLiked wdt:P57 ?theirDirector .
+            ?moviesTheyLiked rdfs:label ?moviesTheyLikedName .
+            filter(?theirType = wd:Q11424)
+            filter(lang(?moviesTheyLikedName) = 'en')
+        }
+        ?me foaf:interest ?moviesLiked .
+        graph ?g { 
+            ?moviesLiked wdt:P31 ?type .
+            ?moviesLiked wdt:P57 ?director .
+            ?moviesLiked rdfs:label ?moviesLikedName .
+            filter(?type = wd:Q11424)
+            filter(lang(?moviesLikedName) = 'en')
+        }
+        filter(?theirDirector = ?director)
+        
+    }
+}
+
+# Q2g
+select ?peopleName ?moviesTheyLikedName
+where {
+    service <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
+        ?games wdt:P31 ?type .
+        filter(?type = wd:Q21055677)
+    }
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
+        ?me a foaf:Person .
+        ?me foaf:knows* ?people .
+        ?people rdfs:label ?peopleName .
+        ?people foaf:interest ?npCGames .
+        graph ?g { 
+            ?npCGames wdt:P31 ?theirType .
+            ?npCGames rdfs:label ?npCGamesName .
+            filter(?theirType = wd:Q21055677)
+            filter(lang(?npCGamesName) = 'en')
+        }
+        ?me foaf:interest ?moviesLiked .
+        graph ?g { 
+            ?moviesLiked wdt:P31 ?type .
+            ?moviesLiked wdt:P57 ?director .
+            ?moviesLiked rdfs:label ?moviesLikedName .
+            filter(?type = wd:Q11424)
+            filter(lang(?moviesLikedName) = 'en')
+        }
+        filter(?theirDirector = ?director)
+        
+    }
 }
 
 
-# Q2d
+select *
+where {
+    service <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
+        ?s ?p ?o
+    }
+}
 
-# Q2e 
 
-# Q2f
 
-# Q2g
+select *
+where {
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?s ?p ?o }
+}
