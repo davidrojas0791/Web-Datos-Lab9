@@ -14,7 +14,9 @@ LOAD <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf
 
 # Q2b
 SELECT (count(*) as ?triples) WHERE { 
-    ?s ?p ?o
+    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
+        ?s ?p ?o
+    }
 }
 
 # Q2c
@@ -54,75 +56,49 @@ insert {
 }
 
 # Q2f
-select ?peopleName ?moviesTheyLikedName
+select  distinct ?peopleName ?moviesTheyLiked ?theirType ?theirTypeName ?moviesTheyLikedName
 where {
     graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
         ?me a foaf:Person .
         ?me foaf:knows* ?people .
-        ?people rdfs:label ?peopleName .
-        ?people foaf:interest ?moviesTheyLiked .
-        graph ?g { 
-            ?moviesTheyLiked wdt:P31 ?theirType .
-            ?moviesTheyLiked wdt:P57 ?theirDirector .
-            ?moviesTheyLiked rdfs:label ?moviesTheyLikedName .
-            filter(?theirType = wd:Q11424)
-            filter(lang(?moviesTheyLikedName) = 'en')
-        }
         ?me foaf:interest ?moviesLiked .
-        graph ?g { 
+        graph ?e {
             ?moviesLiked wdt:P31 ?type .
             ?moviesLiked wdt:P57 ?director .
-            ?moviesLiked rdfs:label ?moviesLikedName .
-            filter(?type = wd:Q11424)
-            filter(lang(?moviesLikedName) = 'en')
         }
-        filter(?theirDirector = ?director)
-        
+        graph ?g {
+            ?people foaf:name ?peopleName .
+            ?people foaf:interest ?moviesTheyLiked .
+            graph ?f { 
+                ?moviesTheyLiked wdt:P31 ?theirType .
+                ?moviesTheyLiked wdt:P57 ?theirDirector .
+                ?moviesTheyLiked rdfs:label ?moviesTheyLikedName .
+                ?theirType rdfs:label ?theirTypeName.
+                filter(?theirType = wd:Q11424)
+                filter(lang(?moviesTheyLikedName) = 'en')
+                filter(lang(?theirTypeName) = 'en')
+                filter(?theirDirector = ?director)
+            }
+        }
     }
 }
 
 # Q2g
-select ?peopleName ?moviesTheyLikedName
+select ?people ?peopleName ?game ?gameName
 where {
     service <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
-        ?games wdt:P31 ?type .
-        filter(?type = wd:Q21055677)
+        ?game wdt:P31 wd:Q7889 .
+        ?game wdt:P31 wd:Q215206 .
+        ?game rdfs:label ?gameName .
+        filter(lang(?gameName)='en')
     }
     graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> {
         ?me a foaf:Person .
-        ?me foaf:knows* ?people .
-        ?people rdfs:label ?peopleName .
-        ?people foaf:interest ?npCGames .
-        graph ?g { 
-            ?npCGames wdt:P31 ?theirType .
-            ?npCGames rdfs:label ?npCGamesName .
-            filter(?theirType = wd:Q21055677)
-            filter(lang(?npCGamesName) = 'en')
+        ?me foaf:knows ?people .
+        graph ?g {
+            ?people rdfs:label ?peopleName .
+            ?people foaf:interest ?npCGame .
+            filter(?game = ?npCGame)
         }
-        ?me foaf:interest ?moviesLiked .
-        graph ?g { 
-            ?moviesLiked wdt:P31 ?type .
-            ?moviesLiked wdt:P57 ?director .
-            ?moviesLiked rdfs:label ?moviesLikedName .
-            filter(?type = wd:Q11424)
-            filter(lang(?moviesLikedName) = 'en')
-        }
-        filter(?theirDirector = ?director)
-        
     }
-}
-
-
-select *
-where {
-    service <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
-        ?s ?p ?o
-    }
-}
-
-
-
-select *
-where {
-    graph <http://raw.githubusercontent.com/davidrojas0791/Web-Datos-Lab9/master/foaf.ttl> { ?s ?p ?o }
 }

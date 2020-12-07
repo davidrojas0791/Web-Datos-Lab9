@@ -52,4 +52,3 @@
    appearances:Gender wd:Q6581097 ;
    appearances:hasHeightMeasurementMeters "1.77"^^xsd:decimal ;
    foaf:myersBriggs "ISTP" .
-
